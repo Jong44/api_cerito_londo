@@ -1,4 +1,6 @@
 const { Sequelize } = require("sequelize");
+const Quiz = require('./quiz');
+
 
 module.exports = (sequelize, Sequelize) => {
     const Content = sequelize.define('content', {
@@ -14,6 +16,7 @@ module.exports = (sequelize, Sequelize) => {
         images: {
             type: Sequelize.STRING
         },
+        
     });
 
     Content.associate = models => {

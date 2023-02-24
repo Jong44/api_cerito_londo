@@ -49,7 +49,7 @@ exports.create = async (req, res) => {
 
 exports.getAll = async(req, ress) => {
     try{
-        const data = await Content.findAll({include: [ { model: Quiz, as: 'quiz' } ]})
+        const data = await Content.findAll()
         ress.json({
             message: "Content retrived successfully",
             data: data,
@@ -106,7 +106,7 @@ exports.delete = async (req, ress) => {
 exports.getById = async (req, ress) => {
     const id = req.params.id
     try{
-        const data = await Content.findByPk(id, {rejectOnEmpty: true, include: [ { model: Quiz, as: 'quiz' } ]})
+        const data = await Content.findByPk(id, {rejectOnEmpty: true})
         ress.json({
             message: `Content retirved successfully with id = ${id}`,
             data: data
