@@ -54,6 +54,7 @@ exports.submitMany = async (req, ress) => {
         }
 
         ress.status(200).json({
+            score: (benar/totalSoal) * 100,
             message: `Benar ${benar} dari ${totalSoal} soal`
         })
     }
