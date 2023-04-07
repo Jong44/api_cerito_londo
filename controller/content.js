@@ -4,6 +4,7 @@ const Content = db.content;
 const Quiz = db.quizzez;
 const multer = require('multer');
 const path = require('path');
+const { Op } = require('sequelize');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -120,3 +121,19 @@ exports.getById = async (req, ress) => {
         })
     }
 }
+
+exports.searchContent = async (req, res) => {
+  const { searchText } = req.query;
+  const quizzes = await Content.findAll({
+    where: {
+      title: {
+        [Op.like]: `%${searchText}%`
+      }
+    }
+  });
+
+  res.json({
+    message: `Quizzes retrieved successfully with searchText=${searchText}.`,
+    data: quizzes
+  });
+};
